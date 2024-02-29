@@ -1,0 +1,6 @@
+int sum_recursive(int arr[], int size){
+    if(size==0){
+        return 0;
+    }
+    return arr[size-1]+sum_recursive( arr, size-1);
+}
