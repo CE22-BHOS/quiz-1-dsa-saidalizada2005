@@ -1,0 +1,68 @@
+#include <iostream>
+#include <stack>
+using namespace std;
+
+class Stack {
+private:
+    stack<int> st; 
+    int min;  
+
+public:
+    void push(int x) {
+        if (st.empty()) {
+            min = x; 
+            st.push(x);
+            return;
+        }
+        if (x < min) {
+            int Y = 2 * x - min;
+            st.push(Y);
+            min = x; 
+        } else {
+            st.push(x); 
+        }
+    }
+
+    void pop() {
+        if (st.empty()) return;
+        int topElement = st.top();
+        if (topElement < min) {
+            min = 2 * min - topElement;
+        }
+        st.pop();
+    }
+
+    int top() {
+        if (st.empty()) return 0; 
+        if (st.top() < min) {
+            return min;
+        } else {
+            return st.top(); 
+        }
+    }
+
+    int getMin() {
+        if (!st.empty()) return min; 
+        else return 0; 
+    }
+};
+
+int main() {
+    Stack st;
+    st.push(6);
+    st.push(-8);
+    st.push(9);
+    st.push(2);
+    st.push(-3);
+    cout << st.top() << endl;
+
+    st.pop();
+    cout << st.top() << endl;
+    st.push(1);
+    cout << st.top() << endl;
+
+    st.pop();
+    cout << st.top() << endl;
+
+    return 0;
+}
