@@ -1,0 +1,43 @@
+#include <iostream>
+using namespace std;
+class Node {
+public:
+    int val;
+    Node* next;
+    Node(int data) {
+        this->val = data;
+        this->next = NULL;
+    }
+};
+
+
+float averageOfValues(Node* head) {
+    if (!head) {
+        return 0.0f;
+    }
+
+    float sum = 0.0f;
+    int count = 0;
+
+    Node* current = head;
+    while (current) {
+        sum += current->val;
+        count++;
+        current = current->next;
+    }
+
+    return sum / count;
+}
+
+int main() {
+    Node* head = new Node(2);
+    head->next = new Node(4);
+    head->next->next = new Node(6);
+    head->next->next->next = new Node(8);
+    head->next->next->next->next = new Node(10);
+
+    float average = averageOfValues(head);
+    cout << "Average of values in the linked list: " << average << endl;
+
+    return 0;
+}
